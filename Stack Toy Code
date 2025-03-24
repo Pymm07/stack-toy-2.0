@@ -1,0 +1,27 @@
+stack = []
+
+
+stack.append ('Red Ring (X-Large Ring)')
+stack.append ('Orange Ring (Large Ring)')
+stack.append ('Yellow Ring (Medium Ring)')
+stack.append ('Green Ring (Small Ring)')
+stack.append ('Blue Ring (X-Small Ring)')
+
+
+while True:
+    print("Stack: BOTTOM", stack)
+    userInput = input("What would you like to do... remove one from top (r) or nothing (n): ")
+
+    if userInput == 'r':
+        element = stack.pop()
+        print("Stack: ", stack)
+    elif userInput == 'n':
+        print("Stack: ", stack)
+        print("Okay, Nothing has happened...")
+    else:
+        print("Invalid response... Please try again...")
+        break
+
+
+    
+        
