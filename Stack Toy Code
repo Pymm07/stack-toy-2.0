@@ -1,27 +1,89 @@
+whiteRing = """
+        -------------
+       |             |
+        -------------
+"""
+blueRing = """
+      -----------------
+     |                 |
+      -----------------
+"""
+greenRing = """
+     ---------------------
+    |                     |
+     ---------------------
+"""
+yellowRing = """
+   -------------------------
+  |                         |
+   -------------------------
+"""
+redRing = """
+ -----------------------------
+|                             |
+ -----------------------------
+"""
+
+# defining stack variable
 stack = []
 
 
-stack.append ('Red Ring (X-Large Ring)')
-stack.append ('Orange Ring (Large Ring)')
-stack.append ('Yellow Ring (Medium Ring)')
-stack.append ('Green Ring (Small Ring)')
-stack.append ('Blue Ring (X-Small Ring)')
-
-
+# loop so user can go until they don't want to play anymore
 while True:
-    print("Stack: BOTTOM", stack)
-    userInput = input("What would you like to do... remove one from top (r) or nothing (n): ")
+    print("===========================================")
+    print("============Welcome to Toy Stack===========")
+    print("===========================================")
 
-    if userInput == 'r':
-        element = stack.pop()
-        print("Stack: ", stack)
-    elif userInput == 'n':
-        print("Stack: ", stack)
-        print("Okay, Nothing has happened...")
+
+    if not stack:
+        print("[EMPTY STACK]")
     else:
-        print("Invalid response... Please try again...")
-        break
+        for ring in reversed(stack): # to make stack print top to bottom
+            print(ring)
+    print("--------------------------------------------")
 
+    print("R = Red Ring")
+    print("Y = Yellow Ring")
+    print("G = Green Ring")
+    print("B = Blue Ring")
+    print("W = White Ring")
+    print("T = Take one off top")
+    print("C = Cancel/End")
 
     
-        
+    userInput = input("What would you like to do...").lower()  # Fixing input call
+
+    if userInput == 'r':
+        stack.append(redRing)
+        print("Added Red Ring")
+    elif userInput == 'y':
+        stack.append(yellowRing)
+        print("Added Yellow Ring")
+    elif userInput == 'g':
+        stack.append(greenRing)
+        print("Added Green Ring")
+    elif userInput == 'b':
+        stack.append(blueRing)
+        print("Added Blue Ring")
+    elif userInput == 'w':
+        stack.append(whiteRing)
+        print("Added White Ring")
+    elif userInput == 't':
+        if stack:
+            removed_ring = stack.pop()
+            print("Removed one ring from the stack:")
+            print(removed_ring)
+        else:
+            print("The stack is empty. Nothing to remove.")
+    elif userInput == 'c':
+        print("Exiting the game...")
+        break
+    else:
+        print("Invalid response... Please try again...")
+
+    # Display the current stack
+    print("Current stack:")
+    for ring in stack:
+        print(ring)
+
+    print("\n")
