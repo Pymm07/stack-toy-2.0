@@ -1,31 +1,42 @@
-whiteRing = """
+#Color codes and making varibles for colors
+RED = '\033[91m'
+GREEN ='\033[92m'
+YELLOW = '\033[93m'
+BLUE = '\033[94m'
+WHITE = '\033[97m'
+RESET = '\033[0m'
+
+
+#Making the rings and setting their colors
+whiteRing = f"""{WHITE}
         -------------
        |             |
         -------------
-"""
-blueRing = """
+{RESET}"""
+blueRing = f"""{BLUE}
       -----------------
      |                 |
       -----------------
-"""
-greenRing = """
+{RESET}"""
+greenRing = f"""{GREEN}
      ---------------------
     |                     |
      ---------------------
-"""
-yellowRing = """
+{RESET}"""
+yellowRing = f"""{YELLOW}
    -------------------------
   |                         |
    -------------------------
-"""
-redRing = """
+{RESET}"""
+redRing = f"""{RED}
  -----------------------------
 |                             |
  -----------------------------
-"""
+{RESET}"""
 
 # defining stack variable
 stack = []
+ringsAdded = set()
 
 
 # loop so user can go until they don't want to play anymore
@@ -34,7 +45,7 @@ while True:
     print("============Welcome to Toy Stack===========")
     print("===========================================")
 
-
+#Displaying stack to user
     if not stack:
         print("[EMPTY STACK]")
     else:
@@ -42,6 +53,16 @@ while True:
             print(ring)
     print("--------------------------------------------")
 
+#Making it so the user can only ad the ring once
+    def push(ring, ringColor, ringName, color):
+        if ringColor in ringsAdded:
+            print(f"{color} You cannot add the {ringName} ring again")
+        else:
+            stack.append(ring)
+            ringsAdded.add(ringColor)
+            print(f"You added {ringName} ring")
+        
+#printing options
     print("R = Red Ring")
     print("Y = Yellow Ring")
     print("G = Green Ring")
@@ -50,23 +71,23 @@ while True:
     print("T = Take one off top")
     print("C = Cancel/End")
 
-    
+    #asking user for input
     userInput = input("What would you like to do...").lower()  # Fixing input call
 
-    if userInput == 'r':
-        stack.append(redRing)
+    if userInput == 'r':        #statements depending on what user inputs
+        push(redRing, 'r', 'Red', RED)
         print("Added Red Ring")
     elif userInput == 'y':
-        stack.append(yellowRing)
+        push(yellowRing, 'y', 'Yellow', YELLOW)
         print("Added Yellow Ring")
     elif userInput == 'g':
-        stack.append(greenRing)
+        push(greenRing, 'g', 'Green', GREEN)
         print("Added Green Ring")
     elif userInput == 'b':
-        stack.append(blueRing)
+        push(blueRing, 'b', 'Blue', BLUE)
         print("Added Blue Ring")
     elif userInput == 'w':
-        stack.append(whiteRing)
+        push(whiteRing, 'w', 'White', WHITE)
         print("Added White Ring")
     elif userInput == 't':
         if stack:
@@ -81,9 +102,6 @@ while True:
     else:
         print("Invalid response... Please try again...")
 
-    # Display the current stack
-    print("Current stack:")
-    for ring in stack:
-        print(ring)
+
 
     print("\n")
